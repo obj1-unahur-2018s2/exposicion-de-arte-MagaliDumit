@@ -1,0 +1,64 @@
+import colores.*
+describe "Ejemplos" {
+	
+/*object rojo 
+object azul 
+object verde 
+object violeta 
+object fucsia 
+object amarillo
+object marron
+object naranja*/
+	
+	
+	
+	var greteEstern = new Artistas( )
+	var horacioCopola = new Artistas( )
+	var antonioBerni = new Artistas( )
+	var juanCastagnino = new Artistas()
+	var raulSoldi = new Artistas( maestro = juanCastagnino)
+	
+	
+	var juanito= new ObrasPintura(autor= horacioCopola, vistasHastaAhora = 20000, nivelDeDesgaste = 240 , colores= #{azul,verde,rojo})
+	var rosita= new ObrasPintura(autor= juanCastagnino,  vistasHastaAhora = 15000 ,nivelDeDesgaste = 80 , colores= #{amarillo ,fucsia} ) 
+	var laFiesta= new ObrasFotografias( autor= horacioCopola, vistasHastaAhora = 8000 , colores = #{rojo ,marron, fucsia , naranja})
+	var personaEnUnaBotella = new ObrasFotografias(autor= greteEstern, vistasHastaAhora = 18000 , colores= #{verde ,amarillo})
+	var exposicionDeArte = new ExposiciondeArte(jurado = #{raulSoldi , antonioBerni} , obras = #{juanito, rosita , laFiesta,personaEnUnaBotella })
+	
+	
+	
+	test "debenSerRestauradas" {
+		
+		assert.equals(#{juanito},exposicionDeArte.debenSerRestauradas())
+
+	}
+	
+	test "es relevante" {
+		
+		assert.that(juanito.esRelevante())
+		assert.that(rosita.esRelevante())
+		assert.that(laFiesta.esRelevante())
+		assert.notThat(personaEnUnaBotella.esRelevante())
+	}
+	
+	test "es influyente"{
+		assert.that(exposicionDeArte.esInfluyente(juanCastagnino))
+	}
+	
+	test "cumpleConLosRequisitos"{
+	assert.that(juanito.cumpleConLosRequisitos())
+	assert.that(rosita.cumpleConLosRequisitos())
+	assert.that(laFiesta.cumpleConLosRequisitos())
+	assert.that(personaEnUnaBotella.cumpleConLosRequisitos())
+	
+	}
+	
+	test "esta inhabilitada"{
+		assert.notThat(exposicionDeArte.estaInhabilitada(juanito))
+		
+	}
+	
+	
+}	
+
+
